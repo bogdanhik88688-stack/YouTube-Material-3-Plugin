@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Material 3 Expressive</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top App Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-badge" id="brand-badge" aria-hidden="true"></div>
+        <div class="brand-text">
+          <h1>YouTube MD3</h1>
+          <span class="subtitle">Material 3 Expressive</span>
+        </div>
+      </div>
+
+      <label class="m3-switch" title="Включить или выключить тему MD3">
+        <input type="checkbox" id="toggle-enabled" />
+        <span class="m3-switch-track">
+          <span class="m3-switch-thumb" id="master-thumb-icon"></span>
+        </span>
+      </label>
+    </header>
+
+    <!-- Live Material You Preview Card -->
+    <section class="preview-card" aria-label="Предпросмотр Material Design 3">
+      <div class="preview-row">
+        <div class="preview-avatar-wrap" id="preview-avatar-wrap">
+          <div class="preview-avatar-fill" id="preview-avatar-fill">
+            <span>M3</span>
+          </div>
+          <svg class="preview-avatar-ring" id="preview-avatar-ring" viewBox="0 0 100 100" aria-hidden="true">
+            <path id="preview-avatar-ring-path" d="" />
+          </svg>
+        </div>
+
+        <div class="preview-meta">
+          <div class="preview-title">Material You • YouTube</div>
+          <div class="preview-sub" id="preview-sub-label">Сквиркл • #6750A4</div>
+          <div class="preview-actions">
+            <span class="preview-pill-btn">Подписаться</span>
+            <span class="preview-chip-btn" id="preview-icon-like"></span>
+            <span class="preview-chip-btn" id="preview-icon-chat"></span>
+            <span class="preview-chip-btn" id="preview-icon-share"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tonal-swatches" aria-label="Тональная палитра">
+        <span class="swatch" style="background: var(--md-sys-color-primary)" title="Primary"></span>
+        <span class="swatch" style="background: var(--md-sys-color-primary-container)" title="Primary Container"></span>
+        <span class="swatch" style="background: var(--md-sys-color-secondary-container)" title="Secondary Container"></span>
+        <span class="swatch" style="background: var(--md-sys-color-tertiary)" title="Tertiary"></span>
+        <span class="swatch" style="background: var(--md-sys-color-surface-container-highest)" title="Surface High"></span>
+      </div>
+    </section>
+
+    <!-- MD3 Segmented Navigation Tabs -->
+    <nav class="m3-tabs" role="tablist" aria-label="Разделы настроек">
+      <button type="button" class="m3-tab is-active" role="tab" aria-selected="true" data-tab="palette" id="tab-btn-palette"></button>
+      <button type="button" class="m3-tab" role="tab" aria-selected="false" data-tab="avatars" id="tab-btn-avatars"></button>
+      <button type="button" class="m3-tab" role="tab" aria-selected="false" data-tab="interface" id="tab-btn-interface"></button>
+    </nav>
+
+    <!-- Main Scrollable Content -->
+    <main class="tab-panels">
+      <!-- TAB 1: RGB & Palette -->
+      <section class="tab-panel is-active" data-panel="palette">
+        <!-- Theme Mode Segmented Control -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Режим темы</span>
+            <div class="chip-inline-group">
+              <button type="button" class="mini-filter-chip" id="btn-amoled">AMOLED</button>
+              <button type="button" class="mini-filter-chip" id="btn-dynamic-video">Цвет видео</button>
+            </div>
+          </div>
+          <div class="segmented-group" id="theme-mode-group">
+            <button type="button" class="seg-btn" data-theme="auto">Авто</button>
+            <button type="button" class="seg-btn" data-theme="dark">Тёмная</button>
+            <button type="button" class="seg-btn" data-theme="light">Светлая</button>
+          </div>
+        </div>
+
+        <!-- MD3 Expressive RGB Sliders (Accent / Text / Buttons) -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Ползунок RGB</span>
+            <div class="hex-controls-right">
+              <button type="button" class="mini-filter-chip" id="btn-target-auto" style="display: none;">Авто</button>
+              <div class="hex-input-pill">
+                <span class="hex-dot" id="rgb-preview-dot"></span>
+                <input type="text" id="hex-input" maxlength="7" value="#6750A4" aria-label="HEX цвет" spellcheck="false" />
+              </div>
+            </div>
+          </div>
+
+          <div class="segmented-group mb-10" id="rgb-target-group">
+            <button type="button" class="seg-btn is-active" data-rgb-target="accent">Акцент</button>
+            <button type="button" class="seg-btn" data-rgb-target="text">Текст</button>
+            <button type="button" class="seg-btn" data-rgb-target="button">Кнопки</button>
+          </div>
+
+          <div class="rgb-sliders">
+            <!-- Red Slider -->
+            <div class="m3-slider-row">
+              <span class="ch-badge ch-r">R</span>
+              <div class="m3-expressive-slider" data-channel="r" style="--slider-color: #FF4D4D">
+                <div class="m3-slider-tooltip" id="tip-r">103</div>
+                <div class="m3-slider-track-shell">
+                  <div class="m3-slider-active-track"></div>
+                  <div class="m3-slider-handle"></div>
+                  <div class="m3-slider-inactive-track"></div>
+                </div>
+                <input type="range" id="slider-r" min="0" max="255" value="103" aria-label="Красный канал R" />
+              </div>
+              <span class="ch-value" id="val-r">103</span>
+            </div>
+
+            <!-- Green Slider -->
+            <div class="m3-slider-row">
+              <span class="ch-badge ch-g">G</span>
+              <div class="m3-expressive-slider" data-channel="g" style="--slider-color: #2FD66B">
+                <div class="m3-slider-tooltip" id="tip-g">80</div>
+                <div class="m3-slider-track-shell">
+                  <div class="m3-slider-active-track"></div>
+                  <div class="m3-slider-handle"></div>
+                  <div class="m3-slider-inactive-track"></div>
+                </div>
+                <input type="range" id="slider-g" min="0" max="255" value="80" aria-label="Зелёный канал G" />
+              </div>
+              <span class="ch-value" id="val-g">80</span>
+            </div>
+
+            <!-- Blue Slider -->
+            <div class="m3-slider-row">
+              <span class="ch-badge ch-b">B</span>
+              <div class="m3-expressive-slider" data-channel="b" style="--slider-color: #4D8BFF">
+                <div class="m3-slider-tooltip" id="tip-b">164</div>
+                <div class="m3-slider-track-shell">
+                  <div class="m3-slider-active-track"></div>
+                  <div class="m3-slider-handle"></div>
+                  <div class="m3-slider-inactive-track"></div>
+                </div>
+                <input type="range" id="slider-b" min="0" max="255" value="164" aria-label="Синий канал B" />
+              </div>
+              <span class="ch-value" id="val-b">164</span>
+            </div>
+          </div>
+
+          <div class="presets-label">Быстрые цвета Material You</div>
+          <div class="preset-dots" id="preset-dots"></div>
+        </div>
+
+        <!-- Scheme Style & Contrast -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Стиль палитры HCT</span>
+          </div>
+          <div class="chip-wrap" id="scheme-style-group">
+            <button type="button" class="filter-chip" data-scheme="tonalSpot">Tonal Spot</button>
+            <button type="button" class="filter-chip" data-scheme="vibrant">Vibrant</button>
+            <button type="button" class="filter-chip" data-scheme="expressive">Expressive</button>
+            <button type="button" class="filter-chip" data-scheme="fidelity">Точный RGB</button>
+            <button type="button" class="filter-chip" data-scheme="monochrome">Моно</button>
+          </div>
+
+          <div class="card-head mt-10">
+            <span class="card-title">Контрастность</span>
+          </div>
+          <div class="segmented-group" id="contrast-group">
+            <button type="button" class="seg-btn" data-contrast="standard">Стандарт</button>
+            <button type="button" class="seg-btn" data-contrast="medium">Средняя</button>
+            <button type="button" class="seg-btn" data-contrast="high">Высокая</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: 48 MD3 Expressive Avatar Shapes -->
+      <section class="tab-panel" data-panel="avatars">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">48 форм MD3</span>
+            <span class="badge-pill" id="selected-shape-badge">Сквиркл</span>
+          </div>
+
+          <div class="segmented-group mb-10" id="avatar-mode-group">
+            <button type="button" class="seg-btn" data-amode="single">Единая форма</button>
+            <button type="button" class="seg-btn" data-amode="mix">Микс у всех</button>
+          </div>
+
+          <div class="shapes-grid" id="shapes-grid"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Где применять и эффекты</span>
+          </div>
+          <div class="switch-list">
+            <label class="switch-row">
+              <span>В комментариях и чате</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-avatar-comments" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>На каналах, карточках и подписках</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-avatar-channels" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Моя аватарка в шапке</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-avatar-self" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Акцентная контур-рамка MD3</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-avatar-ring" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Пружинная анимация при наведении</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-avatar-spring" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Site Design & Rewritten Icons -->
+      <section class="tab-panel" data-panel="interface">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Иконки Material Symbols Rounded</span>
+          </div>
+          <div class="icons-showcase" id="icons-showcase" aria-hidden="true"></div>
+
+          <div class="m3-slider-row mb-10">
+            <span class="ch-badge" title="Размер иконок">Px</span>
+            <div class="m3-expressive-slider" id="icon-size-slider" style="--slider-color: var(--md-sys-color-primary)">
+              <div class="m3-slider-tooltip" id="tip-icon-size">20px</div>
+              <div class="m3-slider-track-shell">
+                <div class="m3-slider-active-track"></div>
+                <div class="m3-slider-handle"></div>
+                <div class="m3-slider-inactive-track"></div>
+              </div>
+              <input type="range" id="slider-icon-size" min="14" max="28" step="1" value="20" aria-label="Размер иконок" />
+            </div>
+            <span class="ch-value" id="val-icon-size">20px</span>
+          </div>
+
+          <div class="m3-slider-row mb-10">
+            <span class="ch-badge" title="Расширенное скругление иконок">◎</span>
+            <div class="m3-expressive-slider" id="icon-round-slider" style="--slider-color: var(--md-sys-color-tertiary)">
+              <div class="m3-slider-tooltip" id="tip-icon-round">50%</div>
+              <div class="m3-slider-track-shell">
+                <div class="m3-slider-active-track"></div>
+                <div class="m3-slider-handle"></div>
+                <div class="m3-slider-inactive-track"></div>
+              </div>
+              <input type="range" id="slider-icon-round" min="0" max="100" step="5" value="50" aria-label="Расширенное скругление иконок" />
+            </div>
+            <span class="ch-value" id="val-icon-round">50%</span>
+          </div>
+
+          <div class="switch-list">
+            <label class="switch-row">
+              <span>Полностью переписать иконки сайта</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-rewrite-icons" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Перекрасить логотип YouTube в акцент</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-accent-logo" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Компоненты YouTube MD3</span>
+            <span class="badge-pill" id="shape-scale-val">1.0×</span>
+          </div>
+
+          <div class="m3-slider-row mb-10">
+            <span class="ch-badge">R</span>
+            <div class="m3-expressive-slider" id="shape-scale-slider" style="--slider-color: var(--md-sys-color-primary)">
+              <div class="m3-slider-tooltip" id="tip-scale">1.0×</div>
+              <div class="m3-slider-track-shell">
+                <div class="m3-slider-active-track"></div>
+                <div class="m3-slider-handle"></div>
+                <div class="m3-slider-inactive-track"></div>
+              </div>
+              <input type="range" id="slider-shape-scale" min="50" max="150" step="5" value="100" aria-label="Скругление карточек MD3" />
+            </div>
+            <span class="ch-value" id="val-scale">1.0×</span>
+          </div>
+
+          <div class="switch-list">
+            <label class="switch-row">
+              <span>Тональные карточки видео и комментариев</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-tonal-cards" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>MD3 видеоплеер и градиент полосы</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-md3-player" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Типографика Google Sans / MD3</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-md3-font" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Тактильная рябь MD3 Ripple</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-ripple" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Убирать рекламу на YouTube</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-block-ads" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+            <label class="switch-row">
+              <span>Кнопка «Параметры» на странице</span>
+              <span class="m3-switch m3-switch-sm">
+                <input type="checkbox" id="toggle-floating-studio" />
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="footer-actions">
+          <button type="button" class="tonal-action-btn" id="btn-reset"></button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../src/md3-color.js"></script>
+  <script src="../src/md3-shapes.js"></script>
+  <script src="../src/md3-icons.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
